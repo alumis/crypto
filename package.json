@@ -1,0 +1,24 @@
+{
+  "name": "@alumis/crypto",
+  "version": "1.0.0",
+  "description": "Public Key Cryptography using OpenPGP.js and MessagePack for JavaScript/ECMA-262",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alumis/crypto.git"
+  },
+  "author": "Emil Müller",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/alumis/crypto/issues"
+  },
+  "devDependencies": {
+    "@alumis/utils": "^1.0.12",
+    "@msgpack/msgpack": "^1.4.0",
+    "openpgp": "^4.5.3"
+  },
+  "peerDependencies": {
+    "@alumis/utils": "^1.0.11",
+    "openpgp": "^4.5.3",
+    "@msgpack/msgpack": "^1.4.0"
+  }
+}
