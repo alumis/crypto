@@ -1,6 +1,6 @@
 {
   "name": "@alumis/crypto",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Public Key Cryptography using OpenPGP.js and MessagePack for JavaScript/ECMA-262",
   "repository": {
     "type": "git",
