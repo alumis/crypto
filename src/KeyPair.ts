@@ -1,6 +1,6 @@
 import { Key } from "./Key";
 
-import openpgp from "openpgp";
+import * as openpgp from "openpgp";
 
 export class KeyPair {
 

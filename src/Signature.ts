@@ -2,7 +2,7 @@ import { uint8ArrayToHex } from "@alumis/utils/src/uint8ArrayToHex";
 import { Key } from "./Key";
 import { SignatureVerificationFailedError } from "./SignatureVerificationFailedError";
 
-import openpgp from "openpgp";
+import * as openpgp from "openpgp";
 
 export class Signature {
 
