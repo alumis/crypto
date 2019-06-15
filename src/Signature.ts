@@ -2,6 +2,8 @@ import { uint8ArrayToHex } from "@alumis/utils/src/uint8ArrayToHex";
 import { Key } from "./Key";
 import { SignatureVerificationFailedError } from "./SignatureVerificationFailedError";
 
+import openpgp from "openpgp";
+
 export class Signature {
 
     sendersPublicKey = null as Key;
@@ -11,17 +13,17 @@ export class Signature {
 
     get created() {
 
-        return <Date>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature).created;
+        return <Date>(<any>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature)).created;
     }
 
     get publicKeyAlgorithm() {
 
-        return publicKeyAlgorithms.get(<number>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature).publicKeyAlgorithm);
+        return publicKeyAlgorithms.get(<number>(<any>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature)).publicKeyAlgorithm);
     }
 
     get hashAlgorithm() {
 
-        return hashAlgorithms.get(<number>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature).hashAlgorithm);
+        return hashAlgorithms.get(<number>(<any>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature)).hashAlgorithm);
     }
 
     toUint8Array() {
@@ -31,7 +33,7 @@ export class Signature {
 
     toHex() {
 
-        return uint8ArrayToHex(<Uint8Array>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature).signature);
+        return uint8ArrayToHex(<Uint8Array>(<any>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature)).signature);
     }
 
     async verifyAsync(data: Uint8Array) {

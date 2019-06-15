@@ -1,3 +1,5 @@
+import openpgp from "openpgp";
+
 export class Key {
 
     _OpenPGPKey: openpgp.key.Key;

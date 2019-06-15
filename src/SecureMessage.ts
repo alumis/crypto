@@ -3,6 +3,8 @@ import { KeyPair } from "./KeyPair";
 import { Signature } from "./Signature";
 import { encode, decode } from "@msgpack/msgpack";
 
+import openpgp from "openpgp";
+
 export class SecureMessage<T> {
 
     cleartext: T;
