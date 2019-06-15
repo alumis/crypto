@@ -5,9 +5,11 @@ import { encode, decode } from "@msgpack/msgpack";
 
 export class SecureMessage<T> {
 
-    cleartext: T;
+    constructor(public cleartext?: T) {
+        
+    }
+
     signature: Signature;
-    sendersPublicKey: Key;
 
     private _plaintext: Uint8Array;
 
@@ -16,24 +18,31 @@ export class SecureMessage<T> {
         if (!this._plaintext)
             this._plaintext = encode(this.cleartext);
 
+        let signature = new Signature();
         let message = openpgp.message.fromBinary(this._plaintext);
 
-        this.signature = new Signature();
-        this.signature._OpenPGPSignature = await openpgp.signature.readArmored((await openpgp.sign({ message: message, privateKeys: sendersKeyPair.privateKey._OpenPGPKey, detached: true })).signature);
-        this.signature.sendersPublicKey = sendersKeyPair.publicKey;
-        this.signature.isVerified = true;
+        signature._OpenPGPSignature = await openpgp.signature.readArmored((await openpgp.sign({ message: message, privateKeys: sendersKeyPair.privateKey._OpenPGPKey, detached: true })).signature);
+        signature.sendersPublicKey = sendersKeyPair.publicKey;
+        signature.isVerified = true;
+
+        this.signature = signature;
     }
 
     async ensureAuthenticityAsync(sendersPublicKey: Key) {
 
         if (sendersPublicKey) {
 
-            if (this.signature) {
+            let signature = this.signature;
 
-                this.signature.isVerified = false;
-                this.signature.sendersPublicKey = sendersPublicKey;
+            if (signature) {
 
-                await this.signature.ensureIsVerifiedAsync(this._plaintext);
+                if (signature.isVerified && signature.sendersPublicKey === sendersPublicKey)
+                    return;
+
+                signature.isVerified = false;
+                signature.sendersPublicKey = sendersPublicKey;
+
+                await signature.ensureIsVerifiedAsync(this._plaintext);
             }
 
             else console.warn("Unable to ensure authenticity of possibly signed message because there is no signature to verify against");
@@ -47,7 +56,8 @@ export class SecureMessage<T> {
         if (!this._plaintext)
             this._plaintext = encode(this.cleartext);
 
-        let plaintextAndSignature = encode([this._plaintext, this.signature ? this.signature.toUint8Array() : null]);
+        let signature = this.signature;
+        let plaintextAndSignature = encode([this._plaintext, signature ? signature.toUint8Array() : null]);
         let ciphertext = <Uint8Array>(await openpgp.encrypt({ message: openpgp.message.fromBinary(plaintextAndSignature), publicKeys: recipientsPublicKey._OpenPGPKey, armor: false })).message.packets.write();
 
         return ciphertext;
@@ -58,7 +68,8 @@ export class SecureMessage<T> {
         if (!this._plaintext)
             this._plaintext = encode(this.cleartext);
 
-        let plaintextAndSignature = encode([this._plaintext, this.signature ? this.signature.toUint8Array() : null]);
+        let signature = this.signature;
+        let plaintextAndSignature = encode([this._plaintext, signature ? signature.toUint8Array() : null]);
         let ciphertext = <Uint8Array>(await openpgp.encrypt({ message: openpgp.message.fromBinary(plaintextAndSignature), passwords: password, armor: false })).message.packets.write();
 
         return ciphertext;

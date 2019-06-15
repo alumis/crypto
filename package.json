@@ -12,9 +12,10 @@
     "url": "https://github.com/alumis/crypto/issues"
   },
   "devDependencies": {
+    "@alumis/observables": "^1.0.52",
     "@alumis/utils": "^1.0.15",
-    "openpgp": "^4.5.3",
-    "@msgpack/msgpack": "^1.4.0"
+    "@msgpack/msgpack": "^1.4.0",
+    "openpgp": "^4.5.3"
   },
   "peerDependencies": {
     "@alumis/utils": "^1.0.15",
