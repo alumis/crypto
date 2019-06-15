@@ -1,7 +1,5 @@
 import { Key } from "./Key";
 
-import * as openpgp from "openpgp";
-
 export class KeyPair {
 
     constructor(public publicKey: Key, public privateKey: Key) {
