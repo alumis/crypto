@@ -1,7 +1,7 @@
 import { Key } from "./Key";
 import { KeyPair } from "./KeyPair";
 import { Signature } from "./Signature";
-import { encode, decode } from "@msgpack/msgpack";
+import { encode, decode } from "msgpack5";
 
 export class SecureMessage<T> {
 

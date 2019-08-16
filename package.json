@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@alumis/utils": "^2.0.1",
-    "@msgpack/msgpack": "^1.8.0",
+    "msgpack5": "^4.2.1",
     "openpgp": "^4.6.0"
   },
   "peerDependencies": {
