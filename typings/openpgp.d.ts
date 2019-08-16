@@ -286,7 +286,7 @@
             function digest(e: any, t: any): any;
             function getHashByteLength(e: any): any;
             function md5(e: any): any;
-            function ripemd(t: any): Uint8Array;
+            function ripemd(t: any): Promise<Uint8Array>;
             function sha1(e: any): any;
             function sha224(t: any): any;
             function sha256(e: any): any;
