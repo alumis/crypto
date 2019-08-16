@@ -1,7 +1,10 @@
 {
   "name": "@alumis/crypto",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Public Key Cryptography using OpenPGP.js and MessagePack for JavaScript/ECMA-262",
+  "scripts": {
+    "bump": "git add -A & git commit -am 'bumped' && npm version patch && npm publish && git push --follow-tags"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alumis/crypto.git"
@@ -12,14 +15,13 @@
     "url": "https://github.com/alumis/crypto/issues"
   },
   "devDependencies": {
-    "@alumis/observables": "^1.0.52",
-    "@alumis/utils": "^1.0.15",
-    "@msgpack/msgpack": "^1.4.0",
-    "openpgp": "^4.5.3"
+    "@alumis/utils": "^2.0.1",
+    "@msgpack/msgpack": "^1.8.0",
+    "openpgp": "^4.6.0"
   },
   "peerDependencies": {
-    "@alumis/utils": "^1.0.15",
-    "openpgp": "^4.5.3",
-    "@msgpack/msgpack": "^1.4.0"
+    "@alumis/utils": "^2.0.1",
+    "@msgpack/msgpack": "^1.8.0",
+    "openpgp": "^4.6.0"
   }
 }

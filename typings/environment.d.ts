@@ -1,2 +1,2 @@
-declare var IS_DEV: boolean;
-declare var IS_PROD: boolean;
+declare var OPENPGP_PATH: string;
+declare var OPENPGP_WORKER_PATH: string;
