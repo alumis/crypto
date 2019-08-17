@@ -1,4 +1,4 @@
-import { uint8ArrayToHex } from "@alumis/utils/src/uint8ArrayToHex";
+import { Uint8ArrayToHex } from "@alumis/utils/src/Uint8ArrayToHex";
 import { Key } from "./Key";
 import { SignatureVerificationFailedError } from "./SignatureVerificationFailedError";
 
@@ -31,7 +31,7 @@ export class Signature {
 
     toHex() {
 
-        return uint8ArrayToHex(<Uint8Array>(<any>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature)).signature);
+        return Uint8ArrayToHex(<Uint8Array>(<any>this._OpenPGPSignature.packets.findPacket(openpgp.enums.packet.signature)).signature);
     }
 
     async verifyAsync(data: Uint8Array) {
