@@ -1,7 +1,7 @@
 import { Key } from "./Key";
 import { KeyPair } from "./KeyPair";
 import { Signature } from "./Signature";
-import { encode, decode } from "msgpack5";
+import { encode, decode } from "@alumis/utils/src/msgpack";
 
 export class SecureMessage<T> {
 
