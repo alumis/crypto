@@ -15,7 +15,7 @@
     "url": "https://github.com/alumis/crypto/issues"
   },
   "devDependencies": {
-    "@alumis/utils": "^2.0.4",
+    "@alumis/utils": "^2.0.5",
     "msgpack5": "^4.2.1",
     "openpgp": "^4.6.0"
   },
